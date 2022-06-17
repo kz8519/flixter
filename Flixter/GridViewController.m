@@ -11,13 +11,17 @@
 #import "DetailsViewController.h"
 
 
-@interface GridViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
+//@interface GridViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate>
 //@interface GridViewController ()
+@interface GridViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) NSArray *movies;
 //@property (nonatomic, strong) NSMu tableArray *posterPaths;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+//@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+//@property (strong, nonatomic) NSArray *data;
+//@property (strong, nonatomic) NSArray *filteredData;
 
 
 @end
@@ -35,6 +39,10 @@
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
     
+    // Implement search bars
+//    self.searchBar.delegate = self;
+    
+    // Call fetchMovies method
     [self fetchMovies];
     
     // Implement refresh
@@ -97,6 +105,10 @@
                // Store the movies in a property to use elsewhere
                self.movies = dataDictionary[@"results"];
 //               NSLog(@"%@", self.movies);
+               
+               // TODO: need to populate here for search bar
+//               self.data = self.movies;
+//               self.filteredData = self.movies;
 
 // https://stackoverflow.com/questions/10224762/how-to-initialize-an-empty-mutable-array-in-objective-c
 //               self.posterPaths = [[NSMutableArray alloc] init];
@@ -119,6 +131,7 @@
 
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.movies.count;
+//    return self.filteredData.count;
 }
 
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
@@ -127,6 +140,8 @@
     PosterCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PosterCell" forIndexPath:indexPath];
     
     NSDictionary *movie = self.movies[indexPath.row];
+    // Implement search bar
+//    NSDictionary *movie = self.filteredData[indexPath.row];
     
     NSString *baseURLString = @"https://image.tmdb.org/t/p/w500";
     NSString *posterURLString = movie[@"poster_path"];
@@ -142,6 +157,39 @@
     
     return cell;
 }
+
+/*
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    
+    if (searchText.length != 0) {
+        NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(NSDictionary *evaluatedObject, NSDictionary *bindings) {
+            return [evaluatedObject[@"title"] containsString:searchText];
+        }];
+        self.filteredData = [self.movies filteredArrayUsingPredicate:predicate];
+    }
+    else {
+//        self.filteredData = self.data;
+        self.filteredData = self.movies;
+    }
+    
+    [self.collectionView reloadData];
+ 
+}
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    self.searchBar.showsCancelButton = YES;
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    self.searchBar.showsCancelButton = NO;
+    self.searchBar.text = @"";
+    [self.searchBar resignFirstResponder];
+    
+    // Reset to no filter
+    self.filteredData = self.movies;
+    [self.collectionView reloadData];
+}
+*/
 
 
 #pragma mark - Navigation

@@ -10,11 +10,14 @@
 #import "UIImageView+AFNetworking.h"
 #import "DetailsViewController.h"
 
-@interface MovieViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface MovieViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 @property (nonatomic, strong) NSArray *movies;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+//@property (strong, nonatomic) NSArray *data;
+@property (strong, nonatomic) NSArray *filteredData;
 
 @end
 
@@ -31,6 +34,10 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
+    // Implement search bars
+    self.searchBar.delegate = self;
+    
+    // Call fetchMovies method
     [self fetchMovies];
     
     // Implement refresh
@@ -95,6 +102,11 @@
                // Store the movies in a property to use elsewhere
                self.movies = dataDictionary[@"results"];
                
+               // TODO: need to populate here for search bar
+//               self.data = self.movies;
+               self.filteredData = self.movies;
+
+               
                // Log movies in for loop
 //               for (int i = 0; i < [self.movies count]; i++)
 //               {
@@ -112,14 +124,20 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.movies.count;
+//    return self.movies.count;
+//    NSLog(@"hi");
+//    NSLog(@"%d", self.movies.count);
+//    NSLog(@"%d", self.filteredData.count);
+    return self.filteredData.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MovieCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell"];
     
-    NSDictionary *movie = self.movies[indexPath.row];
+//    NSDictionary *movie = self.movies[indexPath.row];
+    // Implement search bar
+    NSDictionary *movie = self.filteredData[indexPath.row];
     
 //    cell.textLabel.text = movie[@"title"];
     cell.titleLabel.text = movie[@"title"];
@@ -134,7 +152,40 @@
     [cell.posterView setImageWithURL:posterURL]; 
     
     return cell;
+
 }
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    
+    if (searchText.length != 0) {
+        NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(NSDictionary *evaluatedObject, NSDictionary *bindings) {
+            return [evaluatedObject[@"title"] containsString:searchText];
+        }];
+        self.filteredData = [self.movies filteredArrayUsingPredicate:predicate];
+    }
+    else {
+//        self.filteredData = self.data;
+        self.filteredData = self.movies;
+    }
+    
+    [self.tableView reloadData];
+ 
+}
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    self.searchBar.showsCancelButton = YES;
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    self.searchBar.showsCancelButton = NO;
+    self.searchBar.text = @"";
+    [self.searchBar resignFirstResponder];
+    
+    // Reset to no filter
+    self.filteredData = self.movies;
+    [self.tableView reloadData];
+}
+
 
 
 #pragma mark - Navigation
