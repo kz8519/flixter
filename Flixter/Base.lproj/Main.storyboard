@@ -232,7 +232,7 @@
         <scene sceneID="j8r-dG-x8S">
             <objects>
                 <navigationController title="Item 1" automaticallyAdjustsScrollViewInsets="NO" id="5Lb-Vl-SbE" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Now Playing" selectedImage="ticket.fill" catalog="system" id="pUm-PF-JIj"/>
+                    <tabBarItem key="tabBarItem" title="Now Playing" image="ticket.fill" catalog="system" id="pUm-PF-JIj"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="XLd-JQ-2ym">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -276,7 +276,7 @@
         <scene sceneID="2zg-Mv-knx">
             <objects>
                 <navigationController title="Item 2" automaticallyAdjustsScrollViewInsets="NO" id="MJB-yD-TJU" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Movies" id="qSj-w2-Gxs"/>
+                    <tabBarItem key="tabBarItem" title="Movies" image="play.circle.fill" catalog="system" id="qSj-w2-Gxs"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Cgo-OA-YWW">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -293,9 +293,10 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="zzt-IY-fh2"/>
+        <segue reference="H3H-YQ-Taz"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="play.circle.fill" catalog="system" width="128" height="121"/>
         <image name="ticket.fill" catalog="system" width="128" height="84"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
