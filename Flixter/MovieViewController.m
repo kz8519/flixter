@@ -200,7 +200,7 @@
     // NSLog(@"%d", [sender isKindOfClass: [MovieCell class]]);
 
     NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-    NSDictionary *dataToPass = self.movies[indexPath.row];
+    NSDictionary *dataToPass = self.filteredData[indexPath.row];
     DetailsViewController *detailVC = [segue destinationViewController];
     detailVC.detailDict = dataToPass;
 }
