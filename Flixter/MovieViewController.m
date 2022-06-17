@@ -16,7 +16,6 @@
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
-//@property (strong, nonatomic) NSArray *data;
 @property (strong, nonatomic) NSArray *filteredData;
 
 @end
@@ -30,7 +29,7 @@
     // Start the activity indicator
     [self.activityIndicator startAnimating];
     
-    // From the video in the hint: set data source and delegate to the view controller
+    // Set data source and delegate to the view controller
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
@@ -66,7 +65,6 @@
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
            if (error != nil) {
                NSLog(@"%@", [error localizedDescription]);
-//               NSLog(@"hi");
                
                // Create UIAlertController
                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Cannot Get Movies"
@@ -84,8 +82,6 @@
                
                // Show UIAlertController
                [self presentViewController:alert animated:YES completion:^{
-                   // optional code for what happens after the alert controller has finished presenting
-                   // TODO: do we need anything here?
                }];
            }
            else {
@@ -96,22 +92,12 @@
                [self.activityIndicator stopAnimating];
                
                // Log results
-//               NSLog(@"%@", dataDictionary);
+               // NSLog(@"%@", dataDictionary);
                
                // Get the array of movies
                // Store the movies in a property to use elsewhere
                self.movies = dataDictionary[@"results"];
-               
-               // TODO: need to populate here for search bar
-//               self.data = self.movies;
                self.filteredData = self.movies;
-
-               
-               // Log movies in for loop
-//               for (int i = 0; i < [self.movies count]; i++)
-//               {
-//                   NSLog(@"%@", [self.movies objectAtIndex:i]);
-//               }
                
                // Reload your table view data
                [self.tableView reloadData];
@@ -124,10 +110,6 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-//    return self.movies.count;
-//    NSLog(@"hi");
-//    NSLog(@"%d", self.movies.count);
-//    NSLog(@"%d", self.filteredData.count);
     return self.filteredData.count;
 }
 
@@ -135,11 +117,9 @@
 {
     MovieCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell"];
     
-//    NSDictionary *movie = self.movies[indexPath.row];
     // Implement search bar
     NSDictionary *movie = self.filteredData[indexPath.row];
     
-//    cell.textLabel.text = movie[@"title"];
     cell.titleLabel.text = movie[@"title"];
     cell.synopsisLabel.text = movie[@"overview"];
     
@@ -148,17 +128,10 @@
     NSString *fullPosterURLString = [baseURLString stringByAppendingString:posterURLString];
     
     NSURL *posterURL = [NSURL URLWithString:fullPosterURLString];
-//    cell.posterView.image = nil;
-//    [cell.posterView setImageWithURL:posterURL];
-//
-//    return cell;
     
     // Implement fade-in images
-//    NSString *urlString = [NSString stringWithFormat:@"https://image.tmdb.org/t/p/w500/%@", movie[@"poster_path"]];
-//    NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:posterURL];
 
-//    __weak MovieCell *weakSelf = cell;
     [cell.posterView setImageWithURLRequest:request placeholderImage:nil
                                     success:^(NSURLRequest *imageRequest, NSHTTPURLResponse *imageResponse, UIImage *image) {
                                         
@@ -179,7 +152,7 @@
                                         }
                                     }
                                     failure:^(NSURLRequest *request, NSHTTPURLResponse * response, NSError *error) {
-                                        // do something for the failure condition
+                                        // failure
                                     }];
     return cell;
 
@@ -194,7 +167,6 @@
         self.filteredData = [self.movies filteredArrayUsingPredicate:predicate];
     }
     else {
-//        self.filteredData = self.data;
         self.filteredData = self.movies;
     }
     
@@ -224,7 +196,8 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-//    NSLog(@"%d", [sender isKindOfClass: [MovieCell class]]);
+    
+    // NSLog(@"%d", [sender isKindOfClass: [MovieCell class]]);
 
     NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
     NSDictionary *dataToPass = self.movies[indexPath.row];

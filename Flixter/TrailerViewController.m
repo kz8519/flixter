@@ -16,8 +16,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-//    NSLog(@"%@", self.detailDict);
-//    [self.playerView loadWithVideoId:@"M7lc1UVf-VE"];
     
     [self fetchTrailer];
 }
@@ -32,10 +30,6 @@
     NSString *fullURL = [tempString stringByAppendingString:partThree];
     
     NSURL *url = [NSURL URLWithString:fullURL];
-    
-//    NSLog(@"hi");
-//    NSLog(@"%@", fullURL);
-//    NSLog(@"%@", url);
     
     // 2. Create request
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
@@ -64,16 +58,10 @@
                
                // Show UIAlertController
                [self presentViewController:alert animated:YES completion:^{
-                   // optional code for what happens after the alert controller has finished presenting
-                   // TODO: do we need anything here?
                }];
            }
            else {
                NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-               
-               // Stop the activity indicator after retrieving the data
-               // Hides automatically if "Hides When Stopped" is enabled
-//               [self.activityIndicator stopAnimating];
                
                // Log results
                NSLog(@"%@", dataDictionary);
@@ -83,25 +71,7 @@
                    [self.playerView loadWithVideoId:dataDictionary[@"results"][0][@"key"]];
                }
                
-               // Get the array of movies
-               // Store the movies in a property to use elsewhere
-//               self.movies = dataDictionary[@"results"];
-//
-//               // TODO: need to populate here for search bar
-//               self.data = self.movies;
-//               self.filteredData = self.movies;
-
-               
-               // Log movies in for loop
-//               for (int i = 0; i < [self.movies count]; i++)
-//               {
-//                   NSLog(@"%@", [self.movies objectAtIndex:i]);
-//               }
-               
-               // Reload your table view data
-//               [self.tableView reloadData];
            }
-//        [self.refreshControl endRefreshing];
        }];
     // 5. Send the request we just set up
     [task resume];

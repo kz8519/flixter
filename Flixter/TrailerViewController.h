@@ -6,7 +6,7 @@
 //
 
 
-//https://developers.google.com/youtube/v3/guides/ios_youtube_helper
+// Followed https://developers.google.com/youtube/v3/guides/ios_youtube_helper
 
 #import <UIKit/UIKit.h>
 #import <YTPlayerView.h>
