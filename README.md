@@ -30,7 +30,8 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-- [ ] User can tap on poster in detail view to watch the trailer.
+- [X] User can tap on poster in detail view to watch the trailer.
+- [X] For each movie displayed, users can see the following details: Title, Synopsis, Poster Image
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
@@ -41,7 +42,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://submissions.us-east-1.linodeobjects.com/metau_ios/_Ul3rWlb.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [Kap](https://getkap.co/).
 
