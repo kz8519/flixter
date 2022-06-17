@@ -148,12 +148,34 @@
     NSString *fullPosterURLString = [baseURLString stringByAppendingString:posterURLString];
     
     NSURL *posterURL = [NSURL URLWithString:fullPosterURLString];
-    cell.collectionsPosterView.image = nil;
-    [cell.collectionsPosterView setImageWithURL:posterURL];
+//    cell.collectionsPosterView.image = nil;
+//    [cell.collectionsPosterView setImageWithURL:posterURL];
     
-//    NSLog(@"%@", [NSString stringWithFormat:@"row: %ld, section: %ld", indexPath.row, indexPath.section]);
+    // Implement fade-in images
+    NSURLRequest *request = [NSURLRequest requestWithURL:posterURL];
     
-//    cell.textLabel.text = [NSString stringWithFormat:@"row: %ld, section: %ld", indexPath.row, indexPath.section]; // skipped because collection view cells don't have text labels
+    [cell.collectionsPosterView setImageWithURLRequest:request placeholderImage:nil
+                                    success:^(NSURLRequest *imageRequest, NSHTTPURLResponse *imageResponse, UIImage *image) {
+                                        
+                                        // imageResponse will be nil if the image is cached
+                                        if (imageResponse) {
+                                            NSLog(@"Image was NOT cached, fade in image");
+                                            cell.collectionsPosterView.alpha = 0.0;
+                                            cell.collectionsPosterView.image = image;
+                                            
+                                            //Animate UIImageView back to alpha 1 over 0.3sec
+                                            [UIView animateWithDuration:0.3 animations:^{
+                                                cell.collectionsPosterView.alpha = 1.0;
+                                            }];
+                                        }
+                                        else {
+                                            NSLog(@"Image was cached so just update the image");
+                                            cell.collectionsPosterView.image = image;
+                                        }
+                                    }
+                                    failure:^(NSURLRequest *request, NSHTTPURLResponse * response, NSError *error) {
+                                        // do something for the failure condition
+                                    }];
     
     return cell;
 }
