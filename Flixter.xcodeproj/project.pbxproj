@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		320F93A7835E9E5967DB351D /* Pods_Flixter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6393A31F8796268CBD1E2A89 /* Pods_Flixter.framework */; };
+		EE6650EF285D118100A883DC /* TrailerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE6650EE285D118100A883DC /* TrailerViewController.m */; };
 		EE7C3A59285A5A1700F3117D /* MovieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7C3A58285A5A1700F3117D /* MovieViewController.m */; };
 		EE7C3A5F285A8BCE00F3117D /* MovieCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7C3A5E285A8BCE00F3117D /* MovieCell.m */; };
 		EE7C3A62285AF95300F3117D /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7C3A61285AF95300F3117D /* DetailsViewController.m */; };
@@ -55,6 +56,8 @@
 		7DA8378FD1A615D42DA7B2D5 /* Pods-FlixterTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlixterTests.release.xcconfig"; path = "Target Support Files/Pods-FlixterTests/Pods-FlixterTests.release.xcconfig"; sourceTree = "<group>"; };
 		8C94C9E893BB6BE9471AFEC5 /* Pods-Flixter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flixter.debug.xcconfig"; path = "Target Support Files/Pods-Flixter/Pods-Flixter.debug.xcconfig"; sourceTree = "<group>"; };
 		C874CED61CF7D458867B9AB0 /* Pods_Flixter_FlixterUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Flixter_FlixterUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE6650ED285D118100A883DC /* TrailerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrailerViewController.h; sourceTree = "<group>"; };
+		EE6650EE285D118100A883DC /* TrailerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrailerViewController.m; sourceTree = "<group>"; };
 		EE7C3A57285A5A1700F3117D /* MovieViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieViewController.h; sourceTree = "<group>"; };
 		EE7C3A58285A5A1700F3117D /* MovieViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovieViewController.m; sourceTree = "<group>"; };
 		EE7C3A5D285A8BCE00F3117D /* MovieCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieCell.h; sourceTree = "<group>"; };
@@ -169,6 +172,8 @@
 				EED0FB80285A4D6800D59925 /* ViewController.h */,
 				EED0FB81285A4D6800D59925 /* ViewController.m */,
 				EED0FB83285A4D6800D59925 /* Main.storyboard */,
+				EE6650ED285D118100A883DC /* TrailerViewController.h */,
+				EE6650EE285D118100A883DC /* TrailerViewController.m */,
 				EE7C3A6F285C369700F3117D /* PosterCell.h */,
 				EE7C3A70285C369700F3117D /* PosterCell.m */,
 				EE7C3A69285BE91400F3117D /* GridViewController.h */,
@@ -450,6 +455,7 @@
 				EE7C3A59285A5A1700F3117D /* MovieViewController.m in Sources */,
 				EE7C3A6E285BE99000F3117D /* TabBarController.m in Sources */,
 				EE7C3A5F285A8BCE00F3117D /* MovieCell.m in Sources */,
+				EE6650EF285D118100A883DC /* TrailerViewController.m in Sources */,
 				EED0FB7C285A4D6800D59925 /* AppDelegate.m in Sources */,
 				EE7C3A62285AF95300F3117D /* DetailsViewController.m in Sources */,
 				EED0FB8D285A4D6900D59925 /* main.m in Sources */,
