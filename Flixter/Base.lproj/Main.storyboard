@@ -232,7 +232,7 @@
         <scene sceneID="j8r-dG-x8S">
             <objects>
                 <navigationController title="Item 1" automaticallyAdjustsScrollViewInsets="NO" id="5Lb-Vl-SbE" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Now Playing" id="pUm-PF-JIj"/>
+                    <tabBarItem key="tabBarItem" title="Now Playing" selectedImage="ticket.fill" catalog="system" id="pUm-PF-JIj"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="XLd-JQ-2ym">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -296,6 +296,7 @@
         <segue reference="zzt-IY-fh2"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="ticket.fill" catalog="system" width="128" height="84"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
