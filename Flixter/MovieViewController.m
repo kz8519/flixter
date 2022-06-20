@@ -26,6 +26,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    
     // Start the activity indicator
     [self.activityIndicator startAnimating];
     
@@ -47,6 +48,8 @@
     // Customize navigation bar
     // Change back button
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back to Now Playing" style:UIBarButtonItemStylePlain target:nil action:nil];
+    
+//    self.tableView.rowHeight = UITableViewAutomaticDimension;
     
 }
 
